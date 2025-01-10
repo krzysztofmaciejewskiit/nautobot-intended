@@ -1,0 +1,11 @@
+hostname {{ device.name }}
+
+{% for interface in device.interfaces %}
+interface {{ interface.name }}
+ description {{ interface.description or "no description" }}
+ {% if interface.enabled %}
+ no shutdown
+ {% else %}
+ shutdown
+ {% endif %}
+{% endfor %}
